@@ -1,7 +1,5 @@
 package org.example;
 
-public class Habit {
-package org.example;
 
     public class Habit {
         private int id;
