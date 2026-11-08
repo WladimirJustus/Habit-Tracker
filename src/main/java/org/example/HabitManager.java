@@ -5,27 +5,31 @@ import java.util.List;
 
 public class HabitManager {
     private List<Habit> habits;
+    private int nextId = 1; // Der Zähler für die automatische ID-Vergabe
 
     // Konstruktor
     public HabitManager() {
         this.habits = new ArrayList<>();
     }
 
-    // Methode: Eine neue Gewohnheit hinzufügen
-    public void addHabit(Habit habit) {
-        habits.add(habit);
-        System.out.println("Gewohnheit hinzugefügt: " + habit.getName());
+    // Methode: Erstellt das Habit selbst, vergibt die ID und erhöht den Zähler
+    public void addHabit(String name, String description) {
+        Habit newHabit = new Habit(nextId, name, description);
+        habits.add(newHabit);
+
+        System.out.println("Gewohnheit '" + name + "' erfolgreich hinzugefügt! (ID: " + nextId + ")");
+        nextId++; // Zähler für die nächste Gewohnheit hochzählen
     }
 
-    // Methode: Alle Gewohnheiten anzeigen
+    // Methode: Alle Gewohnheiten mit ihrer ID anzeigen
     public void listHabits() {
         if (habits.isEmpty()) {
             System.out.println("Noch keine Gewohnheiten vorhanden.");
             return;
         }
-        System.out.println("Deine Gewohnheiten:");
+        System.out.println("\nDeine Gewohnheiten:");
         for (Habit h : habits) {
-            System.out.println("- " + h.getName() + ": " + h.getDescription());
+            System.out.println("- [" + h.getId() + "] " + h.getName() + ": " + h.getDescription());
         }
     }
 }
